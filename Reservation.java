@@ -1,25 +1,30 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Reservation implements Bookable, Cancelable {
 
     private String reservationId;
     private Customer customer;
     private Room room;
-    private int numberOfNights;
     private double totalPrice;
     private boolean isBooked;
     private boolean isCancelled;
     private Payment payment;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
 
-    public Reservation(String reservationId, Customer customer, Room room, int numberOfNights) {
+
+    public Reservation(String reservationId, Customer customer, Room room, LocalDate checkInDate,
+                       LocalDate checkOutDate) {
         this.reservationId = reservationId;
         this.customer = customer;
         this.room = room;
-        this.numberOfNights = numberOfNights;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.isBooked = false;
         this.isCancelled = false;
     }
+
 
     public String getReservationId() {
         return reservationId;
@@ -33,10 +38,6 @@ public class Reservation implements Bookable, Cancelable {
         return room;
     }
 
-    public int getNumberOfNights() {
-        return numberOfNights;
-    }
-
     public double getTotalPrice() {
         return totalPrice;
     }
@@ -44,21 +45,37 @@ public class Reservation implements Bookable, Cancelable {
     public Payment getPayment() {
         return payment;
     }
+    public LocalDate getCheckInDate() {
+        return checkInDate;
+    }
+
+    public LocalDate getCheckOutDate() {
+        return checkOutDate;
+    }
+    public long getNumberOfNights() {
+        return ChronoUnit.DAYS.between(checkInDate, checkOutDate);
+    }
+
+
 
     @Override
     public void book() {
         if (room.isAvailable() && !isBooked && !isCancelled) {
             this.isBooked = true;
             room.setAvailable(false);
-            this.totalPrice = room.calculatePrice(numberOfNights);
+            int nights = (int) getNumberOfNights();
+            this.totalPrice = room.calculatePrice(nights);
 
             System.out.println("Reservation " + reservationId + " booked!");
             System.out.println("Customer: " + customer.getName());
             System.out.println("Room: " + room.getRoomNumber());
-            System.out.println("Nights: " + numberOfNights);
+            System.out.println("Check-in: " + checkInDate);
+            System.out.println("Check-out: " + checkOutDate);
+            System.out.println("Nights: " + nights);
             System.out.println("Total: " + totalPrice);
         } else {
-            System.out.println("Cannot book - room not available!");
+            System.out.println("You can't book the room, it is not available!");
+
         }
     }
 
@@ -79,7 +96,7 @@ public class Reservation implements Bookable, Cancelable {
             room.setAvailable(true);
             System.out.println("Reservation " + reservationId + " cancelled!");
         } else {
-            System.out.println("Cannot cancel - not booked!");
+            System.out.println("Cannot cancel - not booked");
         }
     }
 
@@ -89,28 +106,7 @@ public class Reservation implements Bookable, Cancelable {
             payment.completePayment();
             System.out.println("Payment completed for reservation " + reservationId);
         } else {
-            System.out.println("Payment failed!");
+            System.out.println("Payment failed");
         }
-    }
-
-    public void saveToFile() throws IOException {
-        FileWriter writer = new FileWriter("data/reservations.txt", true);
-        writer.write(
-                reservationId + "," +
-                        customer.getEmail() + "," +
-                        room.getRoomNumber() + "," +
-                        numberOfNights + "," +
-                        totalPrice + "\n"
-        );
-        writer.close();
-    }
-
-    @Override
-    public String toString() {
-        return "Reservation " + reservationId +
-                " - Customer: " + customer.getName() +
-                ", Room: " + room.getRoomNumber() +
-                ", Nights: " + numberOfNights +
-                ", Total: " + totalPrice;
     }
 }
