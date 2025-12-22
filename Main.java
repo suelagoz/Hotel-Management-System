@@ -70,6 +70,59 @@ public class Main {
             );
 
             reservation2.makePayment(creditCardPayment);
+               Payment creditCardPayment = new CreditCardPayment(
+                    reservation2.getTotalPrice(),   // amount
+                    "P002",                          // payment id
+                    "23-12-2025",                    // payment date
+                    "1234-5678-9012-3456",           // card number
+                    "Tugberk Erdonmez",              // card holder name
+                    "12/27"                          // expiry
+            );
+
+            reservation2.makePayment(creditCardPayment);
+               Payment creditCardPayment = new CreditCardPayment(
+                    reservation2.getTotalPrice(),   // amount
+                    "P002",                          // payment id
+                    "23-12-2025",                    // payment date
+                    "1234-5678-9012-3456",           // card number
+                    "Tugberk Erdonmez",              // card holder name
+                    "12/27"                          // expiry
+            );
+
+            reservation2.makePayment(creditCardPayment);
+            System.out.println();
+
+          // trying to create a customer , shows exception handling
+            try {
+                Customer c3 = new Customer("Beren","Bazayıt","beren@gmail.com", "");
+                booking.addCustomer(c3);
+                System.out.println("- " + c3.getName());
+            } catch (InvalidCustomerDataException e) {
+                System.out.println("Beren Bazayıt couldn't be added: " + e.getMessage());
+            }
+            System.out.println("\nSystem finished.");
+
+        } catch (InvalidCustomerDataException e) {
+            System.out.println("Customer data error: " + e.getMessage());
+        }
+    }
+}
+
+          // trying to create a customer , shows exception handling
+            try {
+                Customer c3 = new Customer("Beren","Bazayıt","beren@gmail.com", "");
+                booking.addCustomer(c3);
+                System.out.println("- " + c3.getName());
+            } catch (InvalidCustomerDataException e) {
+                System.out.println("Beren Bazayıt couldn't be added: " + e.getMessage());
+            }
+            System.out.println("\nSystem finished.");
+
+        } catch (InvalidCustomerDataException e) {
+            System.out.println("Customer data error: " + e.getMessage());
+        }
+    }
+}
 
           // trying to create a customer , shows exception handling
             try {
