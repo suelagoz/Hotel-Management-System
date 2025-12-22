@@ -6,7 +6,7 @@ public class StandardRoom extends Room{
 
     @Override
    public void printAvailable() {
-        System.out.println("Suite Room availability: " + isAvailable());
+        System.out.println("Standard Room availability: " + isAvailable());
     }
     @Override
     public double calculatePrice(int numberOfNights) {
@@ -18,3 +18,4 @@ public class StandardRoom extends Room{
         return "StandardRoom - Room: " + getRoomNumber() + ", Price: " + getPrice() + ", Available: " + isAvailable();
     }
 }
+
