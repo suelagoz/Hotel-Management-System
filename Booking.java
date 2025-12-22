@@ -16,7 +16,7 @@ public class Booking {
         initializeRooms();
     }
 
-
+// initializes the system with default rooms
     private void initializeRooms() {
         addRoom(new StandardRoom("101", 2, 100.0, true));
         addRoom(new StandardRoom("102", 2, 100.0, true));
@@ -33,15 +33,14 @@ public class Booking {
         customers.add(customer);
     }
     public void createReservation(String reservationId, Customer customer, Room room)
-            throws RoomNotAvailableException {
+            throws RoomNotAvailableException { // if the room is not available
 
         if (!room.isAvailable()) {
             throw new RoomNotAvailableException("Room " + room.getRoomNumber() + " is not available.");
         }
 
         LocalDate checkIn = LocalDate.now();
-        LocalDate checkOut = checkIn.plusDays(3);
-
+        LocalDate checkOut = checkIn.plusDays(3); // defauld 3 night stay
         Reservation reservation =
                 new Reservation(reservationId, customer, room, checkIn, checkOut);
 
@@ -59,7 +58,8 @@ public class Booking {
     public ArrayList<Reservation> getReservations() {
         return reservations;
     }
-
+    
+ // returns only available rooms
     public ArrayList<Room> getAvailableRooms() {
         ArrayList<Room> availableRooms = new ArrayList<>();
 
@@ -72,5 +72,6 @@ public class Booking {
     }
 
 }
+
 
 
