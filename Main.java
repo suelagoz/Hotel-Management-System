@@ -10,16 +10,15 @@ public class Main {
            // customers
             Customer c1 = new Customer("Su", "Elagöz", "su@gmail.com", "4443332221");
             Customer c2 = new Customer("Tuğberk", "Erdönmez", "tugberk@mail.com", "1111222233");
-            Customer c3 = new Customer("Beren","Bazayıt","beren@gmail.com", "7894562135");
-
+           
+            // adding customers to system
             booking.addCustomer(c1);
             booking.addCustomer(c2);
-            booking.addCustomer(c3);
+
 
             System.out.println("Customers added:");
             System.out.println("- " + c1.getName());
             System.out.println("- " + c2.getName());
-            System.out.println("- " + c3.getName());
             System.out.println();
 
             //  available rooms
@@ -35,17 +34,22 @@ public class Main {
 
             // selecting
             Room selectedRoom = booking.getAvailableRooms().get(0);
+            Room selectedRoom2 = booking.getAvailableRooms().get(1);
 
             // creating reserv.
             booking.createReservation("R001", c1, selectedRoom);
+            booking.createReservation("R002", c2, selectedRoom2);
 
             Reservation reservation = booking.getReservations().get(0);
+            Reservation reservation2 = booking.getReservations().get(1);
 
             // booking
             reservation.book();
+            reservation2.book();
+
             System.out.println();
 
-            // payment
+            //  cash payment
             Payment cashPayment = new CashPayment(
                     reservation.getTotalPrice(),
                     "P001",
@@ -55,7 +59,26 @@ public class Main {
 
             reservation.makePayment(cashPayment);
 
+            // credit card payment - customer 2
+            Payment creditCardPayment = new CreditCardPayment(
+                    reservation2.getTotalPrice(),   // amount
+                    "P002",                          // payment id
+                    "23-12-2025",                    // payment date
+                    "1234-5678-9012-3456",           // card number
+                    "Tugberk Erdonmez",              // card holder name
+                    "12/27"                          // expiry
+            );
 
+            reservation2.makePayment(creditCardPayment);
+
+          // trying to create a customer , shows exception handling
+            try {
+                Customer c3 = new Customer("Beren","Bazayıt","beren@gmail.com", "");
+                booking.addCustomer(c3);
+                System.out.println("- " + c3.getName());
+            } catch (InvalidCustomerDataException e) {
+                System.out.println("Beren Bazayıt couldn't be added: " + e.getMessage());
+            }
             System.out.println("\nSystem finished.");
 
         } catch (InvalidCustomerDataException e) {
