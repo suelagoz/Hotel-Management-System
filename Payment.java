@@ -45,7 +45,8 @@ public abstract class Payment {
 
     @Override
     public String toString() {
-        return "Payment" + paymentId + "\nPaymentDate" + paymentDate + "\nAmount" + amount;
+        return "Payment" + paymentId + "\nPaymentDate" + paymentDate + "\nAmount:" + amount;
     }
 
 }
+
