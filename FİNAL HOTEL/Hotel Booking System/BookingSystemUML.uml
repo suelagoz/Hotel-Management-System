@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/ASUS/OneDrive/Masaüstü/Hotel Booking System/src</OriginalElement>
+  <nodes>
+    <node x="-144.0" y="1807.5">SuiteRoom</node>
+    <node x="524.5" y="1043.5">Reservation</node>
+    <node x="111.5" y="871.5">CreditCardPayment</node>
+    <node x="304.0" y="1499.5">Booking</node>
+    <node x="34.5" y="128.5">HotelGUI</node>
+    <node x="177.0" y="1844.5">StandardRoom</node>
+    <node x="391.5" y="883.5">CashPayment</node>
+    <node x="-21.0" y="1523.5">Customer</node>
+    <node x="276.0" y="1188.5">Main</node>
+    <node x="499.5" y="295.5">Cancelable</node>
+    <node x="16.5" y="-14.0">InvalidCustomerDataException</node>
+    <node x="331.5" y="575.5">Payment</node>
+    <node x="-143.0" y="1115.5">Room</node>
+    <node x="605.5" y="635.5">Bookable</node>
+    <node x="-133.5" y="624.5">FileManager</node>
+    <node x="-133.5" y="46.0">RoomNotAvailableException</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="CreditCardPayment" target="Payment" relationship="GENERALIZATION">
+      <point x="0.0" y="-68.5" />
+      <point x="220.0" y="840.0" />
+      <point x="440.0" y="840.0" />
+      <point x="0.0" y="104.5" />
+    </edge>
+    <edge source="StandardRoom" target="Room" relationship="GENERALIZATION">
+      <point x="0.0" y="-55.5" />
+      <point x="280.0" y="1500.0" />
+      <point x="-40.0" y="1500.0" />
+      <point x="0.0" y="104.5" />
+    </edge>
+    <edge source="Reservation" target="Cancelable" relationship="REALIZATION">
+      <point x="0.0" y="-176.5" />
+      <point x="640.0" y="760.0" />
+      <point x="580.0" y="760.0" />
+      <point x="0.0" y="44.5" />
+    </edge>
+    <edge source="CashPayment" target="Payment" relationship="GENERALIZATION">
+      <point x="0.0" y="-56.5" />
+      <point x="500.0" y="840.0" />
+      <point x="440.0" y="840.0" />
+      <point x="0.0" y="104.5" />
+    </edge>
+    <edge source="Reservation" target="Bookable" relationship="REALIZATION">
+      <point x="0.0" y="-176.5" />
+      <point x="640.0" y="760.0" />
+      <point x="680.0" y="760.0" />
+      <point x="0.0" y="44.5" />
+    </edge>
+    <edge source="SuiteRoom" target="Room" relationship="GENERALIZATION">
+      <point x="0.0" y="-92.5" />
+      <point x="0.0" y="104.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.31228416378885054" showDependencies="false" x="377.64257503949443" y="1061.9431279620849" />
+  <SelectedNodes>
+    <node>CashPayment</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
