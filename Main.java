@@ -68,7 +68,7 @@ public class Main {
                     "P002",                          // payment id
                     "23-12-2025",                    // payment date
                     "1234-5678-9012-3456",           // card number
-                    "Tugberk Erdonmez",              // card holder name
+                    "Barbara Scott",              // card holder name
                     "12/27"                          // expiry
             );
 
@@ -77,11 +77,11 @@ public class Main {
 
           // trying to create a customer , shows exception handling
             try {
-                Customer c3 = new Customer("Beren","Bazayıt","beren@gmail.com", "");
+                Customer c3 = new Customer("Mark","Brown","mark@gmail.com", "");
                 booking.addCustomer(c3);
                 System.out.println("- " + c3.getName());
             } catch (InvalidCustomerDataException e) {
-                System.out.println("Beren Bazayıt couldn't be added: " + e.getMessage());
+                System.out.println("Mark Brown couldn't be added: " + e.getMessage());
             }
             System.out.println("\nSystem finished.");
 
