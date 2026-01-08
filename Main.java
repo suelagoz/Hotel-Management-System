@@ -1,4 +1,5 @@
-import java.io.IOException;
+// THIS MAIN CLASS IS FOR TESTING ONLY
+
 public class Main {
 
     public static void main(String[] args) {
@@ -9,21 +10,13 @@ public class Main {
             System.out.println("Booking system started.\n");
 
            // customers
-            Customer c1 = new Customer("Su", "Elagöz", "su@gmail.com", "4443332221");
-            Customer c2 = new Customer("Tuğberk", "Erdönmez", "tugberk@mail.com", "1111222233");
+            Customer c1 = new Customer("Alex", "Williams", "alex@gmail.com", "4443332221");
+            Customer c2 = new Customer("Barbara", "Scott", "barb@gmail.com", "1111222233");
 
             // adding customers to system
             booking.addCustomer(c1);
             booking.addCustomer(c2);
 
-            try {
-    c1.saveToFile();
-    c2.saveToFile();
-    System.out.println("Customers saved to file.");
-} catch (IOException e) {
-    System.out.println("Error saving customers: " + e.getMessage());
-}
-            
 
             System.out.println("Customers added:");
             System.out.println("- " + c1.getName());
@@ -38,6 +31,7 @@ public class Main {
                                 " | Capacity: " + room.getCapacity() +
                                 " | Price: " + room.getPrice()
                 );
+
             }
             System.out.println();
 
@@ -45,7 +39,7 @@ public class Main {
             Room selectedRoom = booking.getAvailableRooms().get(0);
             Room selectedRoom2 = booking.getAvailableRooms().get(1);
 
-            // creating reserv.
+            // creating reservation
             booking.createReservation("R001", c1, selectedRoom);
             booking.createReservation("R002", c2, selectedRoom2);
 
@@ -79,6 +73,7 @@ public class Main {
             );
 
             reservation2.makePayment(creditCardPayment);
+            System.out.println();
 
           // trying to create a customer , shows exception handling
             try {
